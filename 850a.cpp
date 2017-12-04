@@ -51,7 +51,9 @@ int main()
     for(int i=0;i<n;i++){
         flag=false;
         for(int j=0;j<n;j++){
+            if(i==j) continue;
             for(int k=j+1;k<n;k++){
+                if(i==k) continue;
                 if(solo(p[i],p[j],p[k])){
                     flag=true;
                     break; //如果有不符合的，就结束循环
