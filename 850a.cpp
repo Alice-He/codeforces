@@ -1,8 +1,8 @@
 /*
 *codeforces 850-A  Five Dimensional Points
-*����:����ά�ռ�����n���㣬���ĳһ��������������������֮��ļн��ϸ�С��90�ȣ���������Ϊgood������Ϊbad�����ж��ٸ�good�㣿
-*��⣺����֪�����ڶ�ά�ռ��������5���㣬��û��good�㣬����ά�ռ��������7������Ҳû��good�㣬�ʿ����Ƴ�����ά�ռ�������ĸ�������11����ֱ�����0
-***    Ȼ��Ϳ�������ѭ�����������
+*题意:在五维空间里有n个点，如果某一个点与其他任意两个点之间的夹角严格小于90度，则称这个点为good，否则为bad，问有多少个good点？
+*题解：可以知道，在二维空间里如果有5个点，则没有good点，在三维空间里如果有7个点则也没有good点，故可以推出在五维空间里，如果点的个数大于11，则直接输出0
+***    然后就可以三重循环暴力解决。
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -11,7 +11,7 @@ struct node{
 }p[1005];
 vector<int>num;
 int n;
-bool solo(node i,node j,node k)
+bool solo(node i,node j,node k) //判断是否符合
 {
     node ij,ik;
     ij.a=j.a-i.a;
@@ -47,14 +47,14 @@ int main()
     for(int i=0;i<n;i++){
         cin>>p[i].a>>p[i].b>>p[i].c>>p[i].d>>p[i].e;
     }
-    bool flag;
+    bool flag; //作为标记
     for(int i=0;i<n;i++){
         flag=false;
         for(int j=0;j<n;j++){
             for(int k=j+1;k<n;k++){
                 if(solo(p[i],p[j],p[k])){
                     flag=true;
-                    break;
+                    break; //如果有不符合的，就结束循环
                 }
             }
             if(flag) break;
